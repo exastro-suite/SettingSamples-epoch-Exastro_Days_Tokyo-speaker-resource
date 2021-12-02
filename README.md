@@ -1,1 +1,1 @@
-# SettingSamples-epoch-KY_CloudSummit-speaker-resource
+# SettingSamples-epoch-Exastro_Days_Tokyo-speaker-resource
