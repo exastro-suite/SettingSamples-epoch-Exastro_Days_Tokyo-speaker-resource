@@ -15,32 +15,40 @@
 
 package exastro.Exastro_Days_Tokyo.speaker_resource.controller.api.v1;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import exastro.Exastro_Days_Tokyo.speaker_resource.controller.api.v1.form.SpeakerForm;
+import exastro.Exastro_Days_Tokyo.speaker_resource.service.SpeakerService;
 import exastro.Exastro_Days_Tokyo.speaker_resource.service.dto.SpeakerDto;
 
 @RestController
 @RequestMapping("/api/v1/speaker")
-public class SpeakerResourceController extends BaseSpeakerController {
+public class SpeakerResourceController {
+	
+	@Autowired
+	protected SpeakerService service;
 	
 	public SpeakerResourceController() {
-		
 	}
 	
-	@GetMapping("/{speaker_id}")
-	public SpeakerForm SpeakerDetail(@PathVariable(value = "speaker_id") @Validated int speaker_id) {
+	@GetMapping("/{speakerId}")
+	public SpeakerForm SpeakerDetail(@PathVariable(value = "speakerId") @Validated int speakerId) {
 		
 		//登壇者マスターから取得
 		SpeakerForm SpeakerDetail = null;
 		try {
-			SpeakerDto e = service.getSpeakerDetail(speaker_id);
+			SpeakerDto e = service.getSpeakerDetail(speakerId);
 			SpeakerDetail = new SpeakerForm(e.getSpeakerId(), e.getSpeakerName(),
-					 e.getSpeakerProfile(), e.getIsDeleted());
+					 e.getSpeakerProfile(), e.isDeleteFlag());
 		
 		}
 		catch(Exception e) {
@@ -49,5 +57,17 @@ public class SpeakerResourceController extends BaseSpeakerController {
 		
 		return SpeakerDetail;
 	}
-
+	
+	//登壇者IDListをもとに登壇者名を返す。
+	@GetMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<String> speaker(@RequestParam(name = "speaker_id", required = false) List<Integer> speakerIdList) {
+		List<String> speakerList = null;
+		try {
+			speakerList = service.getEventSpeakerList(speakerIdList);
+		}
+		catch(Exception e) {
+			throw e;
+		}
+		return speakerList;
+	}
 }

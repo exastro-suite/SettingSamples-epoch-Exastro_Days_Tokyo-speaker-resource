@@ -13,19 +13,15 @@
  *   limitations under the License.
  */
 
-package exastro.Exastro_Days_Tokyo.speaker_resource.service;
+package exastro.Exastro_Days_Tokyo.speaker_resource.repository.entity;
 
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import org.springframework.stereotype.Service;
-
-import exastro.Exastro_Days_Tokyo.speaker_resource.service.dto.SpeakerDto;
-
-@Service
-public interface SpeakerService {
-
-	//登壇者マスターから取得
-	public List<SpeakerDto> getSpeakerList();
-	public SpeakerDto getSpeakerDetail(int speaker_id);
-	public List<String> getEventSpeakerList(List<Integer> speakerIdList);
+@JsonIgnoreProperties(ignoreUnknown = true)
+/**
+ * The persistent class for the events database table.
+ * 
+ */
+public interface SpeakerName {
+	String getSpeakerName();
 }

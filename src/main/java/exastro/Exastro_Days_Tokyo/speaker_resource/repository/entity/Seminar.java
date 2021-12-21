@@ -1,6 +1,6 @@
-package exastro.Exastro_Days_Tokyo.speaker_resource.repository.vo;
+package exastro.Exastro_Days_Tokyo.speaker_resource.repository.entity;
 
-public class SeminarVO {
+public class Seminar {
 	private int mstSeminarId;
 	private String seminarName;
 

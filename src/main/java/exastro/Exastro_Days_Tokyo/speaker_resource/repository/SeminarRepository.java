@@ -21,15 +21,15 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import exastro.Exastro_Days_Tokyo.speaker_resource.repository.vo.SeminarListVO;
+import exastro.Exastro_Days_Tokyo.speaker_resource.repository.entity.SeminarList;
 
 @ConfigurationProperties(prefix = "resource.event")
 @Repository
-public interface SeminarRepository extends JpaRepository<SeminarListVO, String> {
+public interface SeminarRepository extends JpaRepository<SeminarList, String> {
 
 
 	//イベントに紐づくセミナー一覧を取得する。
-	ArrayList<SeminarListVO>  findByEventId(int eventId);
+	ArrayList<SeminarList>  findByEventId(int eventId);
 	
 	//セミナー一覧から登壇者ID 取得
 //	ArrayList<SpeakerVO> findBySpeakerIdIn(List<Integer> speakerList);

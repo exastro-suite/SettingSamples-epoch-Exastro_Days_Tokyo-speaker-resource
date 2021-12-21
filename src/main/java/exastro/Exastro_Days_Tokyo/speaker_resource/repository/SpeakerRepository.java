@@ -21,11 +21,14 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import exastro.Exastro_Days_Tokyo.speaker_resource.repository.vo.SpeakerVO;
+import exastro.Exastro_Days_Tokyo.speaker_resource.repository.entity.Speaker;
+import exastro.Exastro_Days_Tokyo.speaker_resource.repository.entity.SpeakerName;
 
 @ConfigurationProperties(prefix = "resource.speaker")
 @Repository
-public interface SpeakerRepository extends JpaRepository<SpeakerVO, String> {	
-	SpeakerVO  findBySpeakerIdIs(int speakerId);
-	List<SpeakerVO> findByIsDeleted(boolean isDeleted);
+public interface SpeakerRepository extends JpaRepository<Speaker, String> {	
+	Speaker  findBySpeakerIdIs(int speakerId);
+	List<Speaker> findByDeleteFlag(boolean deleteFlag);
+	List<Speaker> findBySpeakerIdIn(List<Integer> speakerIdList);
+	List<SpeakerName> findByDeleteFlagFalseAndSpeakerIdIn(List<Integer> speakerIdList);
 }

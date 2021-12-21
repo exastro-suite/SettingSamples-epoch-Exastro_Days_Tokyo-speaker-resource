@@ -20,13 +20,18 @@ public class SpeakerDto {
 	private int speakerId;
 	private String speakerName;
 	private String speakerProfile;
-	private boolean isDeleted;
+	private boolean deleteFlag;
+	
+	public SpeakerDto(int speakerId, String speakerName) {
+		this.speakerId = speakerId;
+		this.speakerName = speakerName;
+	}
 
-	public SpeakerDto(int speakerId, String speakerName,String speakerProfile, boolean isDeleted) {
+	public SpeakerDto(int speakerId, String speakerName,String speakerProfile, boolean deleteFlag) {
 		this.speakerId = speakerId;
 		this.speakerName = speakerName;
 		this.speakerProfile = speakerProfile;
-		this.isDeleted = isDeleted;
+		this.deleteFlag = deleteFlag;
 	}
 	
 	public int getSpeakerId() {
@@ -35,7 +40,6 @@ public class SpeakerDto {
 	public void setSpeakerId(int speakerId) {
 		this.speakerId = speakerId;
 	}
-	
 	public String getSpeakerName() {
 		return speakerName;
 	}
@@ -48,12 +52,11 @@ public class SpeakerDto {
 	public void setSpeakerProfile(String speakerProfile) {
 		this.speakerProfile = speakerProfile;
 	}
-	public boolean getIsDeleted() {
-		return isDeleted;
+	public boolean isDeleteFlag() {
+		return deleteFlag;
 	}
-	public void setIsDeleted(boolean isDeleted) {
-		this.isDeleted = isDeleted;
+	public void setDeleteFlag(boolean deleteFlag) {
+		this.deleteFlag = deleteFlag;
 	}
-
 }
 

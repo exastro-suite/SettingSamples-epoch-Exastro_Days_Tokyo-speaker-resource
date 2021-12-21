@@ -5,15 +5,15 @@ import java.util.Date;
 public class SeminarListDto extends SeminarDto{
 	private int seminarId;
 	private Date startDatetime;
-	private int isDeleted;
+	private boolean deleteFlag;
 	private int blockId;
 	private int speakerId;
 	private int eventId;
 	
+	
 	public SeminarListDto(int seminarId) {
 		this.seminarId = seminarId;
 	}
-	
 	public int getSeminarId() {
 		return seminarId;
 	}
@@ -26,11 +26,11 @@ public class SeminarListDto extends SeminarDto{
 	public void setStartDatetime(Date startDatetime) {
 		this.startDatetime = startDatetime;
 	}
-	public int getIsDeleted() {
-		return isDeleted;
+	public boolean isDeleteFlag() {
+		return deleteFlag;
 	}
-	public void setIsDeleted(int isDeleted) {
-		this.isDeleted = isDeleted;
+	public void setDeleteFlag(boolean deleteFlag) {
+		this.deleteFlag = deleteFlag;
 	}
 	public int getBlockId() {
 		return blockId;
@@ -50,6 +50,5 @@ public class SeminarListDto extends SeminarDto{
 	public void setEventId(int eventId) {
 		this.eventId = eventId;
 	}
-	
 }
 

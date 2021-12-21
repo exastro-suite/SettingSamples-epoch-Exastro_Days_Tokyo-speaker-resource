@@ -15,18 +15,32 @@
 
 package exastro.Exastro_Days_Tokyo.speaker_resource.controller.api.v1.form;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class SpeakerForm {
-
+	@JsonProperty("speaker_id")
 	private int speakerId;
+	
+	@JsonProperty("speaker_name")
 	private String speakerName;
+	
 	private String speakerProfile;
-	private boolean isDeleted;
+	
+	private boolean deleteFlag;
+	
+	public SpeakerForm() {
+	}
 
-	public SpeakerForm(int speakerId, String speakerName,String speakerProfile, boolean isDeleted) {
+	public SpeakerForm(int speakerId, String speakerName) {
+		this.speakerId = speakerId;
+		this.speakerName = speakerName;
+	}
+	
+	public SpeakerForm(int speakerId, String speakerName,String speakerProfile, boolean deleteFlag) {
 		this.speakerId = speakerId;
 		this.speakerName = speakerName;
 		this.speakerProfile = speakerProfile;
-		this.isDeleted = isDeleted;
+		this.deleteFlag = deleteFlag;
 	}
 	
 	public int getSpeakerId() {
@@ -48,13 +62,11 @@ public class SpeakerForm {
 	public void setSpeakerProfile(String speakerProfile) {
 		this.speakerProfile = speakerProfile;
 	}
-	public boolean getIsDeleted() {
-		return isDeleted;
+	public boolean isDeleteFlag() {
+		return deleteFlag;
 	}
-	public void setDeleted(boolean isDeleted) {
-		this.isDeleted = isDeleted;
+	public void setDeleteFlag(boolean deleteFlag) {
+		this.deleteFlag = deleteFlag;
 	}
-	
-
 }
 

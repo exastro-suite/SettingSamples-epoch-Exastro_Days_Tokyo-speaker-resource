@@ -13,7 +13,7 @@
  *   limitations under the License.
  */
 
-package exastro.Exastro_Days_Tokyo.speaker_resource.repository.vo;
+package exastro.Exastro_Days_Tokyo.speaker_resource.repository.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -29,7 +29,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  */
 @Entity
 @Table(name="mst_speakers")
-public class SpeakerVO {
+public class Speaker {
 
 	
 	@Id
@@ -42,8 +42,8 @@ public class SpeakerVO {
 	@Column(name="speaker_profile")
 	private String speakerProfile;
 
-	@Column(name="is_deleted")
-	private boolean isDeleted;
+	@Column(name="delete_flag")
+	private boolean deleteFlag;
 
 
 	public int getSpeakerId() {
@@ -52,26 +52,23 @@ public class SpeakerVO {
 	public void setSpeakerId(int speakerId) {
 		this.speakerId = speakerId;
 	}
-	
 	public String getSpeakerName() {
 		return speakerName;
 	}
 	public void setSpeakerName(String speakerName) {
 		this.speakerName = speakerName;
 	}
-	
 	public String getSpeakerProfile() {
 		return speakerProfile;
 	}
 	public void setSpeakerProfile(String speakerProfile) {
 		this.speakerProfile = speakerProfile;
 	}
-	
-	public boolean getIsDeleted() {
-		return isDeleted;
+	public boolean isDeleteFlag() {
+		return deleteFlag;
 	}
-	public void setDeleted(boolean isDeleted) {
-		this.isDeleted = isDeleted;
+	public void setDeleteFlag(boolean deleteFlag) {
+		this.deleteFlag = deleteFlag;
 	}
 }
 

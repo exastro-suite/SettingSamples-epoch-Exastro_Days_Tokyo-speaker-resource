@@ -1,4 +1,4 @@
-package exastro.Exastro_Days_Tokyo.speaker_resource.repository.vo;
+package exastro.Exastro_Days_Tokyo.speaker_resource.repository.entity;
 
 import java.util.Date;
 
@@ -16,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  */
 @Entity
 @Table(name="seminars")
-public class SeminarListVO{
+public class SeminarList{
 
 	@Id
 	@Column(name="seminar_id")
@@ -25,8 +25,8 @@ public class SeminarListVO{
 	@Column(name="start_datetime")
 	private Date startDatetime;
 
-	@Column(name="is_deleted")
-	private int isDeleted;
+	@Column(name="delete_flag")
+	private boolean deleteFlag;
 
 	@Column(name="block_id")
 	private int blockId;
@@ -37,14 +37,13 @@ public class SeminarListVO{
 	@Column(name="event_id")
 	private int eventId;
 	
-	public SeminarListVO() {
-		
+	public SeminarList() {	
 	}
 	
-	public SeminarListVO(int seminarId) {
+	
+	public SeminarList(int seminarId) {
 		this.seminarId = seminarId;
 	}
-	
 	public int getSeminarId() {
 		return seminarId;
 	}
@@ -57,11 +56,11 @@ public class SeminarListVO{
 	public void setStartDatetime(Date startDatetime) {
 		this.startDatetime = startDatetime;
 	}
-	public int getIsDeleted() {
-		return isDeleted;
+	public boolean isDeleteFlag() {
+		return deleteFlag;
 	}
-	public void setIsDeleted(int isDeleted) {
-		this.isDeleted = isDeleted;
+	public void setDeleteFlag(boolean deleteFlag) {
+		this.deleteFlag = deleteFlag;
 	}
 	public int getBlockId() {
 		return blockId;
@@ -81,6 +80,5 @@ public class SeminarListVO{
 	public void setEventId(int eventId) {
 		this.eventId = eventId;
 	}
-	
 }
 

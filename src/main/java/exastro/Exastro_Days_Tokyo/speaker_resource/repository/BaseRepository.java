@@ -16,6 +16,4 @@
 package exastro.Exastro_Days_Tokyo.speaker_resource.repository;
 
 public abstract class BaseRepository {
-	
-
 }

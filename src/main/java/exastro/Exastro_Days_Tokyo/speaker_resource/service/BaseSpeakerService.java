@@ -39,7 +39,7 @@ public abstract class BaseSpeakerService {
 			speakerList = speaker_repo.findAll()
 					.stream()
 					.map(e -> new SpeakerDto(e.getSpeakerId(), e.getSpeakerName(), 
-							e.getSpeakerProfile(), e.getIsDeleted()))
+							e.getSpeakerProfile(), e.isDeleteFlag()))
 					.collect(Collectors.toList());
 			
 					}
