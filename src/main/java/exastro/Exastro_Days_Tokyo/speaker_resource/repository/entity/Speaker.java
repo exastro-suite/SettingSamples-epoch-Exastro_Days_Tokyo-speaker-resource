@@ -30,7 +30,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
 @Table(name="mst_speakers")
 public class Speaker {
-
 	
 	@Id
 	@Column(name="speaker_id")
@@ -38,14 +37,13 @@ public class Speaker {
 	
 	@Column(name="speaker_name")
 	private String speakerName;
-
+	
 	@Column(name="speaker_profile")
 	private String speakerProfile;
-
+	
 	@Column(name="delete_flag")
 	private boolean deleteFlag;
-
-
+	
 	public int getSpeakerId() {
 		return speakerId;
 	}
@@ -71,4 +69,3 @@ public class Speaker {
 		this.deleteFlag = deleteFlag;
 	}
 }
-

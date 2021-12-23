@@ -23,5 +23,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  * 
  */
 public interface SpeakerName {
+	
 	String getSpeakerName();
 }

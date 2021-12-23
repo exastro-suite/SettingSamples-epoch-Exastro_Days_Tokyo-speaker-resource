@@ -47,8 +47,7 @@ public class SpeakerResourceController {
 		SpeakerForm SpeakerDetail = null;
 		try {
 			SpeakerDto e = service.getSpeakerDetail(speakerId);
-			SpeakerDetail = new SpeakerForm(e.getSpeakerId(), e.getSpeakerName(),
-					 e.getSpeakerProfile(), e.isDeleteFlag());
+			SpeakerDetail = new SpeakerForm(e.getSpeakerId(), e.getSpeakerName(), e.getSpeakerProfile());
 		
 		}
 		catch(Exception e) {

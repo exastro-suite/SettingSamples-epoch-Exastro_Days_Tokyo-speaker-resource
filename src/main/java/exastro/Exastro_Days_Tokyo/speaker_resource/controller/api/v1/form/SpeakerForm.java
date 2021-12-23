@@ -15,18 +15,20 @@
 
 package exastro.Exastro_Days_Tokyo.speaker_resource.controller.api.v1.form;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
+import lombok.Data;
+
+@Data
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class SpeakerForm {
-	@JsonProperty("speaker_id")
+	
 	private int speakerId;
 	
-	@JsonProperty("speaker_name")
 	private String speakerName;
 	
 	private String speakerProfile;
-	
-	private boolean deleteFlag;
 	
 	public SpeakerForm() {
 	}
@@ -36,37 +38,10 @@ public class SpeakerForm {
 		this.speakerName = speakerName;
 	}
 	
-	public SpeakerForm(int speakerId, String speakerName,String speakerProfile, boolean deleteFlag) {
+	public SpeakerForm(int speakerId, String speakerName,String speakerProfile) {
 		this.speakerId = speakerId;
 		this.speakerName = speakerName;
 		this.speakerProfile = speakerProfile;
-		this.deleteFlag = deleteFlag;
 	}
 	
-	public int getSpeakerId() {
-		return speakerId;
-	}
-	public void setSpeakerId(int speakerId) {
-		this.speakerId = speakerId;
-	}
-	
-	public String getSpeakerName() {
-		return speakerName;
-	}
-	public void setSpeakerName(String speakerName) {
-		this.speakerName = speakerName;
-	}
-	public String getSpeakerProfile() {
-		return speakerProfile;
-	}
-	public void setSpeakerProfile(String speakerProfile) {
-		this.speakerProfile = speakerProfile;
-	}
-	public boolean isDeleteFlag() {
-		return deleteFlag;
-	}
-	public void setDeleteFlag(boolean deleteFlag) {
-		this.deleteFlag = deleteFlag;
-	}
 }
-
