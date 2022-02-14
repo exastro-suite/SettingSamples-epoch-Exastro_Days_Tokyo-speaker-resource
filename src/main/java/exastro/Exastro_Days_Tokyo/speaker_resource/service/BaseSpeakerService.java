@@ -38,8 +38,8 @@ public abstract class BaseSpeakerService {
 			//登壇者一覧から登壇者一覧を取得
 			speakerList = speaker_repo.findAll()
 					.stream()
-					.map(e -> new SpeakerDto(e.getSpeakerId(), e.getSpeakerName(), 
-							e.getSpeakerProfile(), e.isDeleteFlag()))
+					.map(s -> new SpeakerDto(s.getSpeakerId(), s.getSpeakerName(), 
+							s.getSpeakerProfile(), s.isDeleteFlag()))
 					.collect(Collectors.toList());
 			
 					}

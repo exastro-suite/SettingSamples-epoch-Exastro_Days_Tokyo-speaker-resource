@@ -32,7 +32,7 @@ import exastro.Exastro_Days_Tokyo.speaker_resource.service.dto.SpeakerDto;
 
 @RestController
 @RequestMapping("/api/v1/speaker")
-public class SpeakerResourceController {
+public class SpeakerResourceController extends BaseSpeakerController{
 	
 	@Autowired
 	protected SpeakerService service;
@@ -41,20 +41,20 @@ public class SpeakerResourceController {
 	}
 	
 	@GetMapping("/{speakerId}")
-	public SpeakerForm SpeakerDetail(@PathVariable(value = "speakerId") @Validated int speakerId) {
+	public SpeakerForm speakerDetail(@PathVariable(value = "speakerId") @Validated int speakerId) {
 		
 		//登壇者マスターから取得
-		SpeakerForm SpeakerDetail = null;
+		SpeakerForm speakerDetail = null;
 		try {
 			SpeakerDto e = service.getSpeakerDetail(speakerId);
-			SpeakerDetail = new SpeakerForm(e.getSpeakerId(), e.getSpeakerName(), e.getSpeakerProfile());
+			speakerDetail = new SpeakerForm(e.getSpeakerId(), e.getSpeakerName(), e.getSpeakerProfile());
 		
 		}
 		catch(Exception e) {
 			throw e;
 		}
 		
-		return SpeakerDetail;
+		return speakerDetail;
 	}
 	
 	//登壇者IDListをもとに登壇者名を返す。

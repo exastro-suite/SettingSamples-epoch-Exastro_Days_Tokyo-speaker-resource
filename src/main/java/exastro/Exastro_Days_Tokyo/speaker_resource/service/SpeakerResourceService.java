@@ -34,9 +34,9 @@ public class SpeakerResourceService extends BaseSpeakerService implements Speake
 		SpeakerDto speakerInfo =null;
 		try {
 			//登壇者ID に紐づく登壇者情報を取得
-			Speaker ev = speaker_repo.findBySpeakerIdIs(speaker_id);
-			speakerInfo = new SpeakerDto(ev.getSpeakerId(), ev.getSpeakerName(), 
-					ev.getSpeakerProfile(), ev.isDeleteFlag());
+			Speaker s = speaker_repo.findBySpeakerIdIs(speaker_id);
+			speakerInfo = new SpeakerDto(s.getSpeakerId(), s.getSpeakerName(), 
+					s.getSpeakerProfile(), s.isDeleteFlag());
 		}
 		catch(Exception e) {
 			throw e;
@@ -50,7 +50,7 @@ public class SpeakerResourceService extends BaseSpeakerService implements Speake
 			//イベントに紐づく登壇者一覧を取得
 			speakerList = speaker_repo.findByDeleteFlagFalseAndSpeakerIdIn(speakerIdList)
 				.stream()
-				.map(e -> e.getSpeakerName())
+				.map(s -> s.getSpeakerName())
 				.distinct()
 				.collect(Collectors.toList());
 		}
