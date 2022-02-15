@@ -29,12 +29,12 @@ public abstract class BaseSpeakerService {
 	public BaseSpeakerService() {
 		
 	}
-	public SpeakerDetailDto getSpeakerDetail(int speaker_id) {
+	public SpeakerDetailDto getSpeakerDetail(int speakerId) {
 		
 		SpeakerDetailDto speakerInfo =null;
 		try {
 			//登壇者ID に紐づく登壇者情報を取得
-			Speaker s = speaker_repo.findBySpeakerIdIs(speaker_id);
+			Speaker s = speaker_repo.findBySpeakerIdIs(speakerId);
 			speakerInfo = new SpeakerDetailDto(s.getSpeakerId(), s.getSpeakerName(), s.getSpeakerProfile());
 		}
 		catch(Exception e) {

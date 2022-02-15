@@ -26,6 +26,6 @@ public interface SpeakerService {
 
 	//登壇者マスターから取得
 //	public List<SpeakerDto> getSpeakerList();
-	public SpeakerDetailDto getSpeakerDetail(int speaker_id);
+	public SpeakerDetailDto getSpeakerDetail(int speakerid);
 	public List<String> getEventSpeakerList(List<Integer> speakerIdList);
 }

@@ -22,12 +22,15 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import lombok.Data;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 /**
  * The persistent class for the events database table.
  * 
  */
 @Entity
+@Data
 @Table(name="mst_speakers")
 public class Speaker {
 	
@@ -43,29 +46,4 @@ public class Speaker {
 	
 	@Column(name="delete_flag")
 	private boolean deleteFlag;
-	
-	public int getSpeakerId() {
-		return speakerId;
-	}
-	public void setSpeakerId(int speakerId) {
-		this.speakerId = speakerId;
-	}
-	public String getSpeakerName() {
-		return speakerName;
-	}
-	public void setSpeakerName(String speakerName) {
-		this.speakerName = speakerName;
-	}
-	public String getSpeakerProfile() {
-		return speakerProfile;
-	}
-	public void setSpeakerProfile(String speakerProfile) {
-		this.speakerProfile = speakerProfile;
-	}
-	public boolean isDeleteFlag() {
-		return deleteFlag;
-	}
-	public void setDeleteFlag(boolean deleteFlag) {
-		this.deleteFlag = deleteFlag;
-	}
 }
