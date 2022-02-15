@@ -17,47 +17,45 @@ package exastro.Exastro_Days_Tokyo.speaker_resource.controller.api.v1;
 
 
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
-import exastro.Exastro_Days_Tokyo.speaker_resource.controller.api.v1.form.SpeakerForm;
-import exastro.Exastro_Days_Tokyo.speaker_resource.service.BaseSpeakerService;
+import exastro.Exastro_Days_Tokyo.speaker_resource.controller.api.v1.form.SpeakerDetailForm;
+import exastro.Exastro_Days_Tokyo.speaker_resource.service.SpeakerService;
+import exastro.Exastro_Days_Tokyo.speaker_resource.service.dto.SpeakerDetailDto;
 
 public class BaseSpeakerController {
 	
 	Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
-	protected BaseSpeakerService service;
+	protected SpeakerService service;
 
 	public BaseSpeakerController() {
 		
 	}
 	
-	@GetMapping("")
-	public List<SpeakerForm> speakerList(){
-
+	@GetMapping("/{speakerId}")
+	public SpeakerDetailForm speakerDetail(@PathVariable(value = "speakerId") @Validated int speakerId) {
+		
 		logger.debug("method called. [ " + Thread.currentThread().getStackTrace()[1].getMethodName() + " ]");
 		
-		List<SpeakerForm> speakerList = null;
-		
+		//登壇者マスターから取得
+		SpeakerDetailForm speakerDetail = null;
 		try {
-			speakerList = service.getSpeakerList()
-					.stream()
-					.map(s -> new SpeakerForm(s.getSpeakerId(), s.getSpeakerName(), s.getSpeakerProfile()))
-					.collect(Collectors.toList());
+			SpeakerDetailDto e = service.getSpeakerDetail(speakerId);
+			speakerDetail = new SpeakerDetailForm(e.getSpeakerId(), e.getSpeakerName(), e.getSpeakerProfile());
+		
 		}
 		catch(Exception e) {
 			logger.debug(e.getMessage(), e);
 			throw e;
 		}
 		
-		return speakerList;
+		return speakerDetail;
 	}
-
 }

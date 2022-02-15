@@ -15,48 +15,22 @@
 
 package exastro.Exastro_Days_Tokyo.speaker_resource.service.dto;
 
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class SpeakerDto {
-
+	
 	private int speakerId;
+	
 	private String speakerName;
-	private String speakerProfile;
-	private boolean deleteFlag;
 	
-	public SpeakerDto(int speakerId, String speakerName) {
-		this.speakerId = speakerId;
-		this.speakerName = speakerName;
-	}
-
-	public SpeakerDto(int speakerId, String speakerName,String speakerProfile, boolean deleteFlag) {
-		this.speakerId = speakerId;
-		this.speakerName = speakerName;
-		this.speakerProfile = speakerProfile;
-		this.deleteFlag = deleteFlag;
-	}
-	
-	public int getSpeakerId() {
-		return speakerId;
-	}
-	public void setSpeakerId(int speakerId) {
-		this.speakerId = speakerId;
-	}
-	public String getSpeakerName() {
-		return speakerName;
-	}
-	public void setSpeakerName(String speakerName) {
-		this.speakerName = speakerName;
-	}
-	public String getSpeakerProfile() {
-		return speakerProfile;
-	}
-	public void setSpeakerProfile(String speakerProfile) {
-		this.speakerProfile = speakerProfile;
-	}
-	public boolean isDeleteFlag() {
-		return deleteFlag;
-	}
-	public void setDeleteFlag(boolean deleteFlag) {
-		this.deleteFlag = deleteFlag;
-	}
 }
 

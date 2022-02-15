@@ -20,32 +20,34 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
-import exastro.Exastro_Days_Tokyo.speaker_resource.repository.entity.Speaker;
-import exastro.Exastro_Days_Tokyo.speaker_resource.service.dto.SpeakerDto;
-
 @Service
 public class SpeakerResourceService extends BaseSpeakerService implements SpeakerService {
 
 	public SpeakerResourceService() {
 	}
+
 	
-	public SpeakerDto getSpeakerDetail(int speaker_id) {
-		
-		SpeakerDto speakerInfo =null;
-		try {
-			//登壇者ID に紐づく登壇者情報を取得
-			Speaker s = speaker_repo.findBySpeakerIdIs(speaker_id);
-			speakerInfo = new SpeakerDto(s.getSpeakerId(), s.getSpeakerName(), 
-					s.getSpeakerProfile(), s.isDeleteFlag());
-		}
-		catch(Exception e) {
-			throw e;
-		}
-		return speakerInfo;
-	}
+//	public  List<SpeakerDto> getSpeakerList(){
+//		List<SpeakerDto> speakerList = null;
+//		try {
+//			//登壇者一覧から登壇者一覧を取得(admin機能)
+//			speakerList = speaker_repo.findAll()
+//					.stream()
+//					.map(s -> new SpeakerDto(s.getSpeakerId(), s.getSpeakerName()))
+//					.collect(Collectors.toList());
+//			
+//					}
+//		catch(Exception e) {
+//			throw e;
+//		}
+//
+//		return speakerList;
+//	}
 	
 	public List<String> getEventSpeakerList(List<Integer> speakerIdList){
+		
 		List<String> speakerList = null;
+		
 		try {
 			//イベントに紐づく登壇者一覧を取得
 			speakerList = speaker_repo.findByDeleteFlagFalseAndSpeakerIdIn(speakerIdList)

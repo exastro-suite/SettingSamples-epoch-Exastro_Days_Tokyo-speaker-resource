@@ -13,18 +13,26 @@
  *   limitations under the License.
  */
 
-package exastro.Exastro_Days_Tokyo.speaker_resource.repository;
+package exastro.Exastro_Days_Tokyo.speaker_resource.service.dto;
 
-import java.util.List;
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import exastro.Exastro_Days_Tokyo.speaker_resource.repository.entity.Speaker;
-import exastro.Exastro_Days_Tokyo.speaker_resource.repository.entity.SpeakerName;
-
-@Repository
-public interface SpeakerRepository extends JpaRepository<Speaker, String> {	
-	Speaker findBySpeakerIdIs(int speakerId);
-	List<SpeakerName> findByDeleteFlagFalseAndSpeakerIdIn(List<Integer> speakerIdList);
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
+public class SpeakerDetailDto {
+	
+	private int speakerId;
+	
+	private String speakerName;
+	
+	private String speakerProfile;
+	
 }
+

@@ -15,13 +15,11 @@
 
 package exastro.Exastro_Days_Tokyo.speaker_resource.service;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 import org.springframework.beans.factory.annotation.Autowired;
 
 import exastro.Exastro_Days_Tokyo.speaker_resource.repository.SpeakerRepository;
-import exastro.Exastro_Days_Tokyo.speaker_resource.service.dto.SpeakerDto;
+import exastro.Exastro_Days_Tokyo.speaker_resource.repository.entity.Speaker;
+import exastro.Exastro_Days_Tokyo.speaker_resource.service.dto.SpeakerDetailDto;
 
 public abstract class BaseSpeakerService {
 	
@@ -31,23 +29,19 @@ public abstract class BaseSpeakerService {
 	public BaseSpeakerService() {
 		
 	}
-
-	public  List<SpeakerDto> getSpeakerList(){
-		List<SpeakerDto> speakerList = null;
+	public SpeakerDetailDto getSpeakerDetail(int speaker_id) {
+		
+		SpeakerDetailDto speakerInfo =null;
 		try {
-			//登壇者一覧から登壇者一覧を取得
-			speakerList = speaker_repo.findAll()
-					.stream()
-					.map(s -> new SpeakerDto(s.getSpeakerId(), s.getSpeakerName(), 
-							s.getSpeakerProfile(), s.isDeleteFlag()))
-					.collect(Collectors.toList());
-			
-					}
+			//登壇者ID に紐づく登壇者情報を取得
+			Speaker s = speaker_repo.findBySpeakerIdIs(speaker_id);
+			speakerInfo = new SpeakerDetailDto(s.getSpeakerId(), s.getSpeakerName(), s.getSpeakerProfile());
+		}
 		catch(Exception e) {
 			throw e;
 		}
-
-		return speakerList;
+		return speakerInfo;
 	}
+
 
 }

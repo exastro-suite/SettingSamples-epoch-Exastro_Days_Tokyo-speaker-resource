@@ -19,13 +19,13 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import exastro.Exastro_Days_Tokyo.speaker_resource.service.dto.SpeakerDto;
+import exastro.Exastro_Days_Tokyo.speaker_resource.service.dto.SpeakerDetailDto;
 
 @Service
 public interface SpeakerService {
 
 	//登壇者マスターから取得
-	public List<SpeakerDto> getSpeakerList();
-	public SpeakerDto getSpeakerDetail(int speaker_id);
+//	public List<SpeakerDto> getSpeakerList();
+	public SpeakerDetailDto getSpeakerDetail(int speaker_id);
 	public List<String> getEventSpeakerList(List<Integer> speakerIdList);
 }
