@@ -20,39 +20,41 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
+import exastro.Exastro_Days_Tokyo.speaker_resource.repository.entity.Speaker;
+import exastro.Exastro_Days_Tokyo.speaker_resource.service.dto.SpeakerDetailDto;
+import exastro.Exastro_Days_Tokyo.speaker_resource.service.dto.SpeakerDto;
+
 @Service
 public class SpeakerResourceService extends BaseSpeakerService implements SpeakerService {
-
+	
 	public SpeakerResourceService() {
 	}
-
 	
-//	public  List<SpeakerDto> getSpeakerList(){
-//		List<SpeakerDto> speakerList = null;
-//		try {
-//			//登壇者一覧から登壇者一覧を取得(admin機能)
-//			speakerList = speaker_repo.findAll()
-//					.stream()
-//					.map(s -> new SpeakerDto(s.getSpeakerId(), s.getSpeakerName()))
-//					.collect(Collectors.toList());
-//			
-//					}
-//		catch(Exception e) {
-//			throw e;
-//		}
-//
-//		return speakerList;
-//	}
-	
-	public List<String> getEventSpeakerList(List<Integer> speakerIdList){
+	public  List<SpeakerDto> getSpeakerList(){
+		List<SpeakerDto> speakerList = null;
+		try {
+			//登壇者一覧から登壇者一覧を取得(admin機能)
+			speakerList = repository.findByDeleteFlagFalse()
+					.stream()
+					.map(s -> new SpeakerDto(s.getSpeakerId(), s.getSpeakerName()))
+					.collect(Collectors.toList());
+		}
+		catch(Exception e) {
+			throw e;
+		}
 		
-		List<String> speakerList = null;
+		return speakerList;
+	}
+	
+	public List<SpeakerDto> getEventSpeakerList(List<Integer> speakerIdList){
+		
+		List<SpeakerDto> speakerList = null;
 		
 		try {
 			//イベントに紐づく登壇者一覧を取得
-			speakerList = speaker_repo.findByDeleteFlagFalseAndSpeakerIdIn(speakerIdList)
+			speakerList = repository.findByDeleteFlagFalseAndSpeakerIdIn(speakerIdList)
 				.stream()
-				.map(s -> s.getSpeakerName())
+				.map(s -> new SpeakerDto(s.getSpeakerId(), s.getSpeakerName()))
 				.distinct()
 				.collect(Collectors.toList());
 		}
@@ -60,5 +62,60 @@ public class SpeakerResourceService extends BaseSpeakerService implements Speake
 			throw e;
 		}
 		return speakerList;
+	}
+	
+	public String registerSpeaker(SpeakerDetailDto sv) {
+		
+		Speaker speaker = null;
+		String resultStr = null;
+		try {
+			speaker = new Speaker(sv.getSpeakerName(), sv.getSpeakerProfile());
+			Speaker result = repository.save(speaker);
+			
+			resultStr = "{\"result\":\"ok\", \"speaker_id\":" + result.getSpeakerId() + "}";
+		}
+		catch(Exception e) {
+			throw e;
+		}
+		
+		return resultStr;
+	}
+	
+	public String updateSpeaker(SpeakerDetailDto sv) {
+		
+		String resultStr = null;
+		try {
+			Speaker speakerTarget = repository.findBySpeakerIdIsAndDeleteFlagFalse(sv.getSpeakerId());
+			speakerTarget.setSpeakerId(sv.getSpeakerId());
+			speakerTarget.setSpeakerName(sv.getSpeakerName());
+			speakerTarget.setSpeakerProfile(sv.getSpeakerProfile());
+//			speakerTarget.setDeleteFlag(sv.isDeleteFlag());
+			Speaker result = repository.save(speakerTarget);
+			
+			resultStr = "{\"result\":\"ok\"}";
+		}
+		catch(Exception e) {
+			throw e;
+		}
+		
+		return resultStr;
+	}
+	
+	public String deleteSpeaker(int speakerId) {
+		
+		String resultStr = null;
+		try {
+			Speaker speakerTarget = repository.findBySpeakerIdIsAndDeleteFlagFalse(speakerId);
+			
+			speakerTarget.setDeleteFlag(true);
+			Speaker result = repository.save(speakerTarget);
+			
+			resultStr = "{\"result\":\"ok\"}";
+		}
+		catch(Exception e) {
+			throw e;
+		}
+		
+		return resultStr;
 	}
 }

@@ -34,5 +34,16 @@ public class SpeakerDetailDto {
 	
 	private String speakerProfile;
 	
+	private boolean deleteFlag;
+	
+	public SpeakerDetailDto(String speakerName, String speakerProfile) {
+		this.speakerName = speakerName;
+		this.speakerProfile = speakerProfile;
+	}
+	
+	public SpeakerDetailDto(int speakerId, String speakerName, String speakerProfile) {
+		this.speakerId = speakerId;
+		this.speakerName = speakerName;
+		this.speakerProfile = speakerProfile;
+	}
 }
-

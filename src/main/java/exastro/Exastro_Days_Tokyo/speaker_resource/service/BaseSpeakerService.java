@@ -24,17 +24,17 @@ import exastro.Exastro_Days_Tokyo.speaker_resource.service.dto.SpeakerDetailDto;
 public abstract class BaseSpeakerService {
 	
 	@Autowired
-	protected SpeakerRepository speaker_repo;
+	protected SpeakerRepository repository;
 	
 	public BaseSpeakerService() {
 		
 	}
 	public SpeakerDetailDto getSpeakerDetail(int speakerId) {
 		
-		SpeakerDetailDto speakerInfo =null;
+		SpeakerDetailDto speakerInfo = null;
 		try {
 			//登壇者ID に紐づく登壇者情報を取得
-			Speaker s = speaker_repo.findBySpeakerIdIs(speakerId);
+			Speaker s = repository.findBySpeakerIdIsAndDeleteFlagFalse(speakerId);
 			speakerInfo = new SpeakerDetailDto(s.getSpeakerId(), s.getSpeakerName(), s.getSpeakerProfile());
 		}
 		catch(Exception e) {

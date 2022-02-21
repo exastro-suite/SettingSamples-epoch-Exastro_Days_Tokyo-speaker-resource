@@ -21,10 +21,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import exastro.Exastro_Days_Tokyo.speaker_resource.repository.entity.Speaker;
-import exastro.Exastro_Days_Tokyo.speaker_resource.repository.entity.SpeakerName;
 
 @Repository
-public interface SpeakerRepository extends JpaRepository<Speaker, String> {	
-	Speaker findBySpeakerIdIs(int speakerId);
-	List<SpeakerName> findByDeleteFlagFalseAndSpeakerIdIn(List<Integer> speakerIdList);
+public interface SpeakerRepository extends JpaRepository<Speaker, String> {
+	
+	List<Speaker> findByDeleteFlagFalse();
+	Speaker findBySpeakerIdIsAndDeleteFlagFalse(int speakerId);
+	List<Speaker> findByDeleteFlagFalseAndSpeakerIdIn(List<Integer> speakerIdList);
 }

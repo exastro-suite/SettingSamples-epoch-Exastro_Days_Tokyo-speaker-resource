@@ -22,7 +22,9 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 /**
@@ -31,6 +33,8 @@ import lombok.Data;
  */
 @Entity
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name="mst_speakers")
 public class Speaker {
 	
@@ -46,4 +50,10 @@ public class Speaker {
 	
 	@Column(name="delete_flag")
 	private boolean deleteFlag;
+	
+	public Speaker(String speakerName, String speakerProfile) {
+		this.speakerName = speakerName;
+		this.speakerProfile = speakerProfile;
+		this.deleteFlag = false;
+	}
 }
