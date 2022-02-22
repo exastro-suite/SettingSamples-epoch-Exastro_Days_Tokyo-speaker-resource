@@ -35,6 +35,9 @@ public abstract class BaseSpeakerService {
 		try {
 			//登壇者ID に紐づく登壇者情報を取得
 			Speaker s = repository.findBySpeakerIdIsAndDeleteFlagFalse(speakerId);
+			if(s == null) {
+				return null;
+			}
 			speakerInfo = new SpeakerDetailDto(s.getSpeakerId(), s.getSpeakerName(), s.getSpeakerProfile());
 		}
 		catch(Exception e) {

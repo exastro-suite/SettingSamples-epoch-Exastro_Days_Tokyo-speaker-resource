@@ -20,9 +20,11 @@ package exastro.Exastro_Days_Tokyo.speaker_resource.controller.api.v1;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.server.ResponseStatusException;
 
 import exastro.Exastro_Days_Tokyo.speaker_resource.controller.api.v1.form.SpeakerDetailForm;
 import exastro.Exastro_Days_Tokyo.speaker_resource.service.SpeakerService;
@@ -48,6 +50,9 @@ public class BaseSpeakerController {
 		SpeakerDetailForm speakerDetail = null;
 		try {
 			SpeakerDetailDto e = service.getSpeakerDetail(speakerId);
+			if(e == null) {
+				throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Not found data.");
+			}
 			speakerDetail = new SpeakerDetailForm(e.getSpeakerId(), e.getSpeakerName(), e.getSpeakerProfile());
 		
 		}
